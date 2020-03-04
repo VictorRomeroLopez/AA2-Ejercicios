@@ -1,0 +1,8 @@
+﻿  Console.cpp
+c:\users\victor.romero\documents\enti\xarxes\aa2\gameserver\utils.h(10): warning C4091: 'static ': ignored on left of 'Utils' when no variable is declared
+  Source.cpp
+c:\users\victor.romero\documents\enti\xarxes\aa2\gameserver\utils.h(10): warning C4091: 'static ': ignored on left of 'Utils' when no variable is declared
+  Utils.cpp
+c:\users\victor.romero\documents\enti\xarxes\aa2\gameserver\utils.h(10): warning C4091: 'static ': ignored on left of 'Utils' when no variable is declared
+  Generating Code...
+  GameServer.vcxproj -> C:\Users\victor.romero\Documents\ENTI\Xarxes\AA2\x64\Debug\GameServer.exe
