@@ -97,8 +97,8 @@ Message GetPacketHeadder(sf::Packet& packet) {
 	return IsMessage(stringedMessage);
 }
 
+//todo: generate a real salt
 float GenerateSalt() {
-	//todo: generate a real salt
 	return 0;
 }
 
@@ -129,28 +129,31 @@ int main()
 		ReceiveClient(socket, *client, packet);
 		
 		switch (GetPacketHeadder(packet)) {
-
-		case Message::HELLO:
-			packet >> client->clientSalt;
-			client->serverSalt = GenerateSalt();
-			sf::Packet helloPacket;
-			helloPacket << "CHALLANGE" << GenerateRandomValueChallange() << GenerateRandomValueChallange();
-			socket.send(helloPacket, client->connection.ip, client->connection.port);
-			break;
-
-		case Message::CHALLANGE:
-			int result;
-			packet >> result;
-			std::string challangeClientAddress;
-			packet >> challangeClientAddress;
-			unsigned short challangeClientPort;
-			packet >> challangeClientPort;
-			Client client = GetClient(challangeClientAddress, challangeClientPort, connectedClients);
-
-			if (result == client.challange.GetResult()) {
-
+			case Message::HELLO: 
+			{
+				packet >> client->clientSalt;
+				client->serverSalt = GenerateSalt();
+				sf::Packet helloPacket;
+				helloPacket << "CHALLANGE" << GenerateRandomValueChallange() << GenerateRandomValueChallange();
+				socket.send(helloPacket, client->connection.ip, client->connection.port);
+				break;
 			}
 
+			case Message::CHALLANGE:
+			{
+				int result;
+				packet >> result;
+				std::string challangeClientAddress;
+				packet >> challangeClientAddress;
+				unsigned short challangeClientPort;
+				packet >> challangeClientPort;
+				Client client = GetClient(challangeClientAddress, challangeClientPort, connectedClients);
+
+				if (result == client.challange.GetResult()) {
+					Utils::print("");
+				}
+				break;
+			}
 		}
 
 	}
