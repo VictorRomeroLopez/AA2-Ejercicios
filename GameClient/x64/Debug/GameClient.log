@@ -1,4 +1,4 @@
 ﻿  ClientMain.cpp
-c:\users\victor romero\documents\enti\3r\xarxes\projectes\[aa2]_ejercicios\gamelib\networkdata.h(1): warning C4068: unknown pragma
-c:\users\victor romero\documents\enti\3r\xarxes\projectes\[aa2]_ejercicios\gameclient\clientmain.cpp(54): warning C4101: 'packet': unreferenced local variable
-  GameClient.vcxproj -> C:\Users\Victor Romero\Documents\ENTI\3r\Xarxes\Projectes\[AA2]_Ejercicios\x64\Debug\GameClient.exe
+c:\users\victorromero\documents\enti\3r\xarxes\[aa2]_ejercicios\gamelib\networkdata.h(1): warning C4068: unknown pragma
+c:\users\victorromero\documents\enti\3r\xarxes\[aa2]_ejercicios\gameclient\clientmain.cpp(54): warning C4101: 'packet': unreferenced local variable
+  GameClient.vcxproj -> C:\Users\VictorRomero\Documents\ENTI\3r\Xarxes\[AA2]_Ejercicios\x64\Debug\GameClient.exe

@@ -1,3 +1,5 @@
-﻿  ServerMain.cpp
-c:\users\victor romero\documents\enti\3r\xarxes\projectes\[aa2]_ejercicios\gamelib\networkdata.h(1): warning C4068: unknown pragma
-  GameServer.vcxproj -> C:\Users\Victor Romero\Documents\ENTI\3r\Xarxes\Projectes\[AA2]_Ejercicios\x64\Debug\GameServer.exe
+﻿  Console.cpp
+  ServerMain.cpp
+c:\users\victorromero\documents\enti\3r\xarxes\[aa2]_ejercicios\gamelib\networkdata.h(1): warning C4068: unknown pragma
+  Generating Code...
+  GameServer.vcxproj -> C:\Users\VictorRomero\Documents\ENTI\3r\Xarxes\[AA2]_Ejercicios\x64\Debug\GameServer.exe

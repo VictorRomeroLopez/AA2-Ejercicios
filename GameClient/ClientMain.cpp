@@ -47,7 +47,7 @@ int main()
 
 	if (!SocketManager::HandleSocketErrors(socket.receive(receivePacket, serverIpAddress, serverPort))) return 1;
 
-	//helloPacketReceived = true;
+	helloPacketReceived = true;
 
 	Message::Header headderPacket = Message::Header::NONE;
 	Challange challange;

@@ -5,13 +5,13 @@
 
 #include <SFML/Network.hpp>
 
-#include "AA1_Ejercicio/PlayerInfo.h"
-#include "AA1_Ejercicio/SocketManager.h"
-#include "AA1_Ejercicio/Utils.h"
-#include "AA1_Ejercicio/Console.h"
-#include "AA1_Ejercicio/Message.h"
-#include "AA1_Ejercicio/Challange.h"
-#include "AA1_Ejercicio/HelloPacket.h"
+#include "PlayerInfo.h"
+#include "SocketManager.h"
+#include "Utils.h"
+#include "Console.h"
+#include "Message.h"
+#include "Challange.h"
+#include "HelloPacket.h"
 
 bool BindSocket(sf::UdpSocket& socket) {
 
