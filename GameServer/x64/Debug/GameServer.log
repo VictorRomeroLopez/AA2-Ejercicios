@@ -1,6 +1,3 @@
-﻿  Source.cpp
-c:\users\victorromero\documents\enti\3r\xarxes\[aa2]_ejercicios\gameserver\utils.h(10): warning C4091: 'static ': ignored on left of 'Utils' when no variable is declared
-c:\users\victorromero\documents\enti\3r\xarxes\[aa2]_ejercicios\gameserver\source.cpp(27): warning C4305: 'initializing': truncation from 'int' to 'unsigned short'
-c:\users\victorromero\documents\enti\3r\xarxes\[aa2]_ejercicios\gameserver\source.cpp(27): warning C4309: 'initializing': truncation of constant value
-c:\users\victorromero\documents\enti\3r\xarxes\[aa2]_ejercicios\gameserver\source.cpp(55): warning C4715: 'ReceiveClient': not all control paths return a value
-  GameServer.vcxproj -> C:\Users\VictorRomero\Documents\ENTI\3r\Xarxes\[AA2]_Ejercicios\x64\Debug\GameServer.exe
+﻿  ServerMain.cpp
+c:\users\victor romero\documents\enti\3r\xarxes\projectes\[aa2]_ejercicios\gamelib\networkdata.h(1): warning C4068: unknown pragma
+  GameServer.vcxproj -> C:\Users\Victor Romero\Documents\ENTI\3r\Xarxes\Projectes\[AA2]_Ejercicios\x64\Debug\GameServer.exe

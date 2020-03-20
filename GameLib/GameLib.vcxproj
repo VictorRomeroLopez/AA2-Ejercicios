@@ -22,7 +22,7 @@
     <ProjectGuid>{CA0BC20B-DACD-41B3-B8B0-4356B380A206}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>GameLib</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -143,10 +143,26 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Challange.h" />
+    <ClInclude Include="Constants.h" />
+    <ClInclude Include="HelloPacket.h" />
+    <ClInclude Include="Message.h" />
+    <ClInclude Include="NetworkData.h" />
     <ClInclude Include="PlayerInfo.h" />
+    <ClInclude Include="SocketManager.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Challange.cpp" />
+    <ClCompile Include="HelloPacket.cpp" />
+    <ClCompile Include="Message.cpp" />
+    <ClCompile Include="NetworkData.cpp" />
     <ClCompile Include="PlayerInfo.cpp" />
+    <ClCompile Include="SocketManager.cpp" />
+    <ClCompile Include="Utils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GameLib.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
