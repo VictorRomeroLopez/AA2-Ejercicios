@@ -10,6 +10,11 @@ public:
 		HELLO = 0,
 		CHALLANGE = 1,
 		WELCOME = 2,
+		EXIT = 3,
+		MESSAGE = 4,
+		PLEAVE = 5,
+		PJOIN = 6,
+		ACK = 7,
 		NONE = -1
 	};
 

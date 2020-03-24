@@ -157,10 +157,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Console.cpp" />
+    <ClCompile Include="CriticalPacket.cpp" />
+    <ClCompile Include="PlayerToValidateInfo.cpp" />
     <ClCompile Include="ServerMain.cpp" />
+    <ClCompile Include="ValidatedPlayerInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Console.h" />
+    <ClInclude Include="CriticalPacket.h" />
+    <ClInclude Include="PlayerToValidateInfo.h" />
+    <ClInclude Include="ValidatedPlayerInfo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,35 +1,33 @@
 #pragma once
+#include <iostream>
+#include <string>
 #include <SFML/Network.hpp>
-#include "NetworkData.h"
 #include "Utils.h"
 
 class PlayerInfo
 {
-	NetworkData networkData;
-	std::string name;
-	int clientSalt;
-	int serverSalt;
+protected:
+	std::size_t playerId;
+	std::string nick;
+	sf::Vector2i position;
 
 public:
-
-#pragma region CONSTUCTORS
+	float timeDifference;
+	bool connectedUser = true;
 
 	PlayerInfo();
-	PlayerInfo(NetworkData _socket, int _clientSalt);
+	PlayerInfo(std::size_t, std::string, sf::Vector2i);
 	~PlayerInfo();
 
-#pragma endregion
+	std::size_t GetId();
+	void SetId(std::size_t _playerId);
+	std::string GetNick();
+	void SetNick(std::string _nick);
+	sf::Vector2i GetPosition();
+	void SetPosition(sf::Vector2i _position);
+	void ResetTimeoutTimer();
 
-#pragma region GETTERS & SETTERS
-
-	NetworkData GetNetworkData();
-	std::string GetName();
-	int GetClientSalt();
-	int GetServerSalt();
-
-#pragma endregion
-	
-	int GenerateRandomClientSalt();
-	int GenerateRandomServerSalt();
+	friend sf::Packet& operator<<(sf::Packet& _packet, const PlayerInfo& _playerInfo);
+	friend sf::Packet& operator>>(sf::Packet& _packet, PlayerInfo& _playerInfo);
 
 };

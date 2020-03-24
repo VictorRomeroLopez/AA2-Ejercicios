@@ -149,6 +149,7 @@
     <ClInclude Include="Message.h" />
     <ClInclude Include="NetworkData.h" />
     <ClInclude Include="PlayerInfo.h" />
+    <ClInclude Include="PlayerSalt.h" />
     <ClInclude Include="SocketManager.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
@@ -158,6 +159,7 @@
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="NetworkData.cpp" />
     <ClCompile Include="PlayerInfo.cpp" />
+    <ClCompile Include="PlayerSalt.cpp" />
     <ClCompile Include="SocketManager.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>

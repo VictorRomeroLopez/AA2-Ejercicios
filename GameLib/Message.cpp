@@ -4,7 +4,12 @@ Message::Header Message::StringToHeader(std::string _header) {
 	static const std::unordered_map<std::string, Header> stringedHeader = {
 		{"HELLO", Header::HELLO},
 		{"CHALLANGE", Header::CHALLANGE},
-		{"WELCOME", Header::WELCOME}
+		{"WELCOME", Header::WELCOME},
+		{"EXIT", Header::EXIT},
+		{"MESSAGE", Header::MESSAGE},
+		{"PLEAVE", Header::PLEAVE},
+		{"P_JOIN", Header::PJOIN},
+		{"ACK", Header::ACK}
 	};
 
 	auto it = stringedHeader.find(_header);
@@ -16,7 +21,12 @@ std::string Message::HeaderToString(Header _header)
 	static const std::unordered_map<Header, std::string> headers = {
 		   {Header::HELLO, "HELLO"},
 		   {Header::CHALLANGE, "CHALLANGE"},
-		   {Header::WELCOME, "WELCOME"}
+		   {Header::WELCOME, "WELCOME"},
+		   {Header::EXIT, "EXIT"},
+		   {Header::MESSAGE, "MESSAGE"},
+		   {Header::PLEAVE, "PLEAVE"},
+		   {Header::PJOIN, "PJOIN"},
+		   {Header::ACK, "ACK"}
 	};
 
 	auto it = headers.find(_header);

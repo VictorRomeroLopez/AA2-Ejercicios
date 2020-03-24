@@ -155,9 +155,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ClientMain.cpp" />
+    <ClCompile Include="LocalPlayerInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\GameLib\Challange.h" />
+    <ClInclude Include="LocalPlayerInfo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,7 +5,7 @@
 class SocketManager
 {
 private:
-	static const bool printMessages = true;
+	static const bool printMessages = false;
 
 public:
 	static bool BindToPort(sf::UdpSocket* _socket, int _port);

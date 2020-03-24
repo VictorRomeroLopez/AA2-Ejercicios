@@ -1,5 +1,5 @@
-﻿  Console.cpp
-  ServerMain.cpp
+﻿  ServerMain.cpp
 c:\users\victorromero\documents\enti\3r\xarxes\[aa2]_ejercicios\gamelib\networkdata.h(1): warning C4068: unknown pragma
-  Generating Code...
+c:\users\victorromero\documents\enti\3r\xarxes\[aa2]_ejercicios\gameserver\servermain.cpp(80): warning C4244: '=': conversion from 'clock_t' to 'float', possible loss of data
+c:\users\victorromero\documents\enti\3r\xarxes\[aa2]_ejercicios\gameserver\servermain.cpp(191): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   GameServer.vcxproj -> C:\Users\VictorRomero\Documents\ENTI\3r\Xarxes\[AA2]_Ejercicios\x64\Debug\GameServer.exe
