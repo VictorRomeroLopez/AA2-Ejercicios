@@ -22,6 +22,13 @@ sf::Vector2i Utils::GenerateRandomMapPosition()
 	return sf::Vector2i{ rand() & cns::GAME_WIDTH, rand() % cns::GAME_HEIGHT };
 }
 
+float Utils::GetRandomFloat() {
+	static std::random_device rd;
+	static std::mt19937 gen(rd());
+	static std::uniform_real_distribution<float> dis(0.f, 1.f);
+	return dis(gen);
+}
+
 sf::Packet& operator<<(sf::Packet& _packet, const sf::Vector2i& _vector)
 {
 	return _packet << _vector.x << _vector.y;
@@ -31,3 +38,4 @@ sf::Packet& operator>>(sf::Packet& _packet, sf::Vector2i& _vector)
 {
 	return _packet >> _vector.x >> _vector.y;
 }
+

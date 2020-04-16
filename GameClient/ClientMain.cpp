@@ -13,15 +13,17 @@
 #include <Message.h>
 #include <Challange.h>
 #include <SocketManager.h>
+#include <Console.h>
 
 #include "LocalPlayerInfo.h"
 
 void SendLotsOfPackets(sf::UdpSocket& _socket, sf::Packet _packet, bool& _packetReceived, bool& _packetSent) {
 
 	while (!_packetReceived) {
+		Utils::print("Sending packets");
 		_socket.send(_packet, cns::SERVER_IP, cns::SERVER_PORT);
 		_packetSent = true;
-		Sleep(3);
+		Sleep(100);
 	}
 
 }
@@ -48,19 +50,20 @@ void ReceiveClient(
 	unsigned short serverPort;
 	Message::Header header;
 	std::size_t clientId;
-	sf::Vector2i position;
 
 	//cambiar por una condicion decente
 	while (true) {
 
 		if (!SocketManager::HandleSocketErrors(_serverSocket.receive(receivePacket, serverIpAddress, serverPort))) return;
 
+		if (Utils::GetRandomFloat() < cns::PERCENT_PACKETLOSS) {
+			continue;
+		}
+
 		receivePacket >> header;
 
 		switch (header) {
 		case Message::Header::CHALLANGE: {
-			if (_localPlayerInfo.challangePacketReceived) break;
-			_localPlayerInfo.challangePacketReceived = true;
 
 			Challange challange;
 			bool aux;
@@ -72,21 +75,25 @@ void ReceiveClient(
 			sf::Packet challangeResponsePacket;
 			challangeResponsePacket << Message::Header::CHALLANGE << challange.GetResult() << _localPlayerInfo.GetSalt() << _localPlayerInfo.GetNick();
 
-			std::thread challangeThread(SendLotsOfPackets, std::ref(_serverSocket), challangeResponsePacket, std::ref(_localPlayerInfo.welcomePacketReceived), std::ref(aux));
-			challangeThread.detach();
-
+			SocketManager::HandleSocketErrors(_serverSocket.send(challangeResponsePacket, cns::SERVER_IP, cns::SERVER_PORT));
+			//std::thread challangeThread(SendLotsOfPackets, std::ref(_serverSocket), challangeResponsePacket, std::ref(_localPlayerInfo.welcomePacketReceived), std::ref(aux));
+			//challangeThread.detach();
 			break;
 		}
 		case Message::Header::WELCOME: {
-
 			if (_localPlayerInfo.welcomePacketReceived) break;
 			_localPlayerInfo.welcomePacketReceived = true;
+			Utils::print("WelcomePacket received");
 
 			unsigned short receivedClientSalt;
 			unsigned short receivedServerSalt;
 			int numPlayersConnected;
+			sf::Vector2i position;
 
 			receivePacket >> receivedClientSalt >> receivedServerSalt >> clientId >> position >> numPlayersConnected;
+
+			_localPlayerInfo.SetPosition(position);
+			Utils::print("Local player info position: " + std::to_string(_localPlayerInfo.GetPosition().x) + ' ' + std::to_string(_localPlayerInfo.GetPosition().y));
 
 			Utils::print("Welcome " + _localPlayerInfo.GetNick() + '!');
 
@@ -96,7 +103,7 @@ void ReceiveClient(
 				PlayerInfo* _playerInfo = new PlayerInfo();
 				receivePacket >> *_playerInfo;
 				_playersConnected.insert(std::pair<std::size_t, PlayerInfo>(_playerInfo->GetId(), *_playerInfo));
-				Utils::print(_playerInfo->GetNick() + " has joined the lobby!");
+				Utils::print(_playerInfo->GetNick() + " has joined the lobby with position" + std::to_string(_playerInfo->GetPosition().x) + ' ' + std::to_string(_playerInfo->GetPosition().y));
 			}
 			
 			break;
@@ -112,7 +119,7 @@ void ReceiveClient(
 			if (it != _playersConnected.end()) break;
 
 			_playersConnected.insert(std::pair<std::size_t, PlayerInfo>(playerJoining.GetId(), playerJoining));
-			Utils::print(playerJoining.GetNick() + " has joined the lobby");
+			Utils::print(playerJoining.GetNick() + " has joined the lobby with position" + std::to_string(playerJoining.GetPosition().x) + ' ' + std::to_string(playerJoining.GetPosition().y));
 
 			SendACKPacket(_serverSocket, _localPlayerInfo, idPacket);
 
@@ -133,7 +140,6 @@ void ReceiveClient(
 			SendACKPacket(_serverSocket, _localPlayerInfo, idPacket);
 
 			break;
-
 		}
 		case Message::Header::MESSAGE: {
 			std::string message;
@@ -175,7 +181,7 @@ int main()
 	sf::Packet helloPacket;
 	helloPacket << Message::Header::HELLO << localPlayerInfo.GetSalt().GetClientSalt();
 
-	std::thread helloThread(SendLotsOfPackets,  std::ref(socket), helloPacket, std::ref(localPlayerInfo.challangePacketReceived), std::ref(localPlayerInfo.helloPacketSent));
+	std::thread helloThread(SendLotsOfPackets,  std::ref(socket), helloPacket, std::ref(localPlayerInfo.welcomePacketReceived), std::ref(localPlayerInfo.helloPacketSent));
 	helloThread.detach();
 
 	while (!localPlayerInfo.helloPacketSent) {}
@@ -185,19 +191,17 @@ int main()
 	std::thread receiveThread(ReceiveClient, std::ref(socket), std::ref(localPlayerInfo), std::ref(playersConnected));
 	receiveThread.detach();
 
+	std::thread consoleThread(Console::console, std::ref(running));
+	consoleThread.detach();
+
 	while (running) {
-		std::cin >> command;
-
-		if (command == "exit") {
-
-			sf::Packet exitPacket;
-			exitPacket << Message::Header::EXIT << localPlayerInfo.GetSalt();
-
-			if ( SocketManager::HandleSocketErrors(socket.send(exitPacket, cns::SERVER_IP, cns::SERVER_PORT))) return 1;
-			running = false;
-
-		}
+		
 	}
+
+	sf::Packet exitPacket;
+	exitPacket << Message::Header::EXIT << localPlayerInfo.GetSalt();
+
+	if (SocketManager::HandleSocketErrors(socket.send(exitPacket, cns::SERVER_IP, cns::SERVER_PORT))) return 1;
 
 	return 0;
 }

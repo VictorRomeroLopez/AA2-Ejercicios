@@ -22,4 +22,3 @@ public:
 	void GenerateRandomServerSalt();
 	Challange GenerateRandomChallange();
 };
-
